@@ -4,11 +4,10 @@
     <div class="photo-container" id="photo-container" v-if="showContainer">
         <div v-if="URLsFirebase.length > 0">
             <div class="card" v-for="(url, index) in URLsFirebase" :key="index">
-                <img @click="downloadImage(index)" :src="url">
-                    <div class="options">
-                        <button><i class="fa-solid fa-download"></i></button>
-                    <button><i class="fa-solid fa-trash"></i></button>
-                    </div>
+                <img :src="url">
+                <div class="options" @click="downloadImage(index)">
+                    <button><i class="fa-solid fa-download"></i></button>
+                </div>
             </div>
         </div>
         <div v-else>
@@ -18,8 +17,8 @@
             <h1 v-else>No picture available</h1>
         </div>
     </div>
-    <button-drop-images v-if="decryptedMessage === 'true' || user.onlyMeCanAddPhotos === false" id="add"
-        :class="rotation" @click="showAddContainer">
+    <button-drop-images v-if="decryptedMessage === 'true' || user.onlyMeCanAddPhotos === false" id="add" :class="rotation"
+        @click="showAddContainer">
         <i class="fas fa-plus"></i>
     </button-drop-images>
     <drop-image :key="componentKey" @reupload-picture="reupload" :show="showContainer"
@@ -112,9 +111,7 @@ export default {
             for (let id = 0; id < this.URLsFirebase.length; id++) {
                 try {
                     const response = await fetch(this.URLsFirebase[id]);
-                    console.log(response)
                     const blob = await response.blob();
-                    console.log(blob)
                     zip.file(this.URLsName[id], blob);
                 } catch (error) {
                     console.error(error);
@@ -180,6 +177,7 @@ export default {
     background-color: #d4b0a5;
     bottom: 0;
 }
+
 .photo-container .card button {
     position: relative;
     width: 40px;
