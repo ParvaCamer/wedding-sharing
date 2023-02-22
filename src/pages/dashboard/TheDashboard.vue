@@ -111,7 +111,7 @@ export default {
             const zip = new JSZip();
             for (let id = 0; id < this.URLsFirebase.length; id++) {
                 try {
-                    const response = await fetch(`/proxy?url=${encodeURIComponent(this.URLsFirebase[id])}`);
+                    const response = await fetch(this.URLsFirebase[id]);
                     console.log(response)
                     const blob = await response.blob();
                     console.log(blob)
