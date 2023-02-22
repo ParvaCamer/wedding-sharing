@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <h1>Wedding Sharing</h1>
-        <input type="number" class="code" placeholder="Type your code" maxlength="4" v-model="inputCode" required>
+        <input type="number" @keyup.enter="goToDashboard" class="code" placeholder="Type your code" maxlength="4" v-model="inputCode" required>
         <div class="row">
             <label>I am a space owner</label>
         <input type="checkbox" value="meonly" class="create" v-model="userIsOwner">
         </div>
-        <input type="text" class="code" placeholder="Type your password" v-model="inputPassword"
+        <input type="text" @keyup.enter="goToDashboard" class="code" placeholder="Type your password" v-model="inputPassword"
             :disabled="!userIsOwner" v-show="userIsOwner">
         <base-button @click="goToDashboard">Go to my space</base-button>
         <router-link to="/signup">New event? Create new space</router-link>
