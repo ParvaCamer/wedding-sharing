@@ -1,8 +1,8 @@
 <template>
-    <the-header></the-header>
-    <router-view v-slot="slotProps">
-      <component :is="slotProps.Component"></component>
-    </router-view>
+  <the-header></the-header>
+  <router-view v-slot="slotProps">
+    <component :is="slotProps.Component"></component>
+  </router-view>
 </template>
 
 <script>
@@ -20,37 +20,27 @@ export default {
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
-    font-family: 'Edu TAS Beginner', cursive;
-    background-color: #fff;
-    color: #000;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Edu TAS Beginner', cursive;
+  background-color: #fff;
+  color: #000;
 }
 
 h1 {
-    font-size: 70px;
-    font-weight: 100;
-    color: #000;
+  font-size: 70px;
+  font-weight: 100;
+  color: #323232;
 }
 
 a {
-    text-decoration: none;
-}
-
-.container {
-    width: 90%;
-    height: auto;
-    margin: 120px 5% 0px 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  text-decoration: none;
 }
 
 #title {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 </style>

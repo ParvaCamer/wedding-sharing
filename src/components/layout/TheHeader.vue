@@ -1,7 +1,9 @@
 <template>
-    <p>OUR SOCIAL</p>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <header>
+        <p>OUR SOCIAL</p>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+    </header>
 </template>
 
 <style scoped>
@@ -16,12 +18,12 @@ header {
     color: #BFBFBF;
 }
 
-a {
-    text-decoration: none;
-}
-
 header a {
     margin-left: 10px;
     color: #BFBFBF;
+}
+
+header a:hover {
+    color: #c79889;
 }
 </style>

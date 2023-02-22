@@ -1,4 +1,4 @@
-# weeding-sharing
+# wedding-sharing
 
 ## Project setup
 ```
