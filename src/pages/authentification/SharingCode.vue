@@ -50,7 +50,7 @@ export default {
             const oneUser = this.getUser.find(user => user.code === this.user.code);
             const key = CryptoJS.enc.Utf8.parse(this.code.toString());
             const iv = CryptoJS.enc.Utf8.parse(oneUser.iv.toString());
-            const encryptedMessage = this.encryptMessage(oneUser.admin.toString(), key, iv).toString();
+            const encryptedMessage = this.encryptMessage(oneUser.admin.toString(), key, iv).toString(); //changer ici
             this.$router.push(`/dashboard/${oneUser.id}/${encryptedMessage}`);
         },
         encryptMessage(status, key, iv) {
