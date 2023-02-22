@@ -17,6 +17,7 @@
             <input type="checkbox" value="meonly" class="create" v-model="user.onlyMeCanAddPhotos">
             <label for="checkbox">Only me can add photos</label>
         </div>
+        <p v-if="errorDisplay">{{ errorMessage }}</p>
         <base-button @click="createCode">Create a new sharing</base-button>
         <router-link to="/signin">I already have a space event</router-link>
     </div>
@@ -39,18 +40,27 @@ export default {
                 admin: true,
                 code: 0
             },
-            showCode: false
+            showCode: false,
+            errorMessage: '',
+            errorDisplay: false
         }
     },
     methods: {
         createCode() {
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email)) {
-                this.showCode = true;
-                return (true)
+            if (this.user.eventName.trim() === "" || this.user.email.trim() === "" || this.user.password.trim() === "") {
+                this.errorDisplay = true;
+                this.errorMessage = 'Please enter correct informations.'
+                return
+            } else {
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email)) {
+                    this.showCode = true;
+                    return true
+                } else {
+                    this.errorDisplay = true;
+                    this.errorMessage = 'Please enter a valid email address.'
+                    return false
+                }
             }
-            alert("You have entered an invalid email address!")
-            return (false)
-
         }
     }
 }
