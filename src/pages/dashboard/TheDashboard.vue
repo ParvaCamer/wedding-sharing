@@ -62,7 +62,6 @@ export default {
         const iv = CryptoJS.enc.Utf8.parse(this.user.iv.toString());
         this.decryptedMessage = this.decryptData(this.pathAdmin, key, iv).toString(CryptoJS.enc.Utf8);
         this.loadPictureFirebase(this.URLsFirebase, this.URLsName);
-        console.log(this.URLsFirebase)
     },
     methods: {
         showAddContainer() {

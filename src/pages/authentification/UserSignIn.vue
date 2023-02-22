@@ -1,13 +1,14 @@
 <template>
     <div class="container">
         <h1>Wedding Sharing</h1>
-        <input type="number" @keyup.enter="goToDashboard" class="code" placeholder="Type your code" maxlength="4" v-model="inputCode" required>
+        <input type="number" class="code" placeholder="Type your code" minlength="4" maxlength="4" v-model="inputCode"
+            required>
         <div class="row">
             <label>I am a space owner</label>
-        <input type="checkbox" value="meonly" class="create" v-model="userIsOwner">
+            <input type="checkbox" value="meonly" class="create" v-model="userIsOwner">
         </div>
-        <input type="text" @keyup.enter="goToDashboard" class="code" placeholder="Type your password" v-model="inputPassword"
-            :disabled="!userIsOwner" v-show="userIsOwner">
+        <input type="text" class="code" placeholder="Type your password" v-model="inputPassword" v-show="userIsOwner">
+        <p v-if="errorDisplay">{{ errorMessage }}</p>
         <base-button @click="goToDashboard">Go to my space</base-button>
         <router-link to="/signup">New event? Create new space</router-link>
     </div>
@@ -21,27 +22,41 @@ export default {
             inputCode: null,
             userIsOwner: false,
             inputPassword: '',
-            user: []
+            user: [],
+            errorMessage: '',
+            errorDisplay: false
         }
     },
     methods: {
         async goToDashboard() {
+            this.errorDisplay = false;
             const response = await fetch(`https://wedding-app-14564-default-rtdb.europe-west1.firebasedatabase.app/users.json`)
             const data = await response.json();
             for (let key in data) {
                 this.user.push({ ...data[key], id: key })
             }
-            this.inputCode = parseInt(this.inputCode)
+
             const getUser = this.user.find(user => user.code === this.inputCode)
-            if (this.inputPassword === getUser.password) {
-                getUser.admin = true;
+
+            if (getUser == undefined || isNaN(this.inputCode)) {
+                this.errorDisplay = true;
+                this.errorMessage = 'Please type a valid code.'
+                return
             } else {
-                getUser.admin = false;
+                if (this.userIsOwner) {
+                    if (this.inputPassword === getUser.password) {
+                        getUser.admin = true;
+                    } else {
+                        this.errorDisplay = true;
+                        this.errorMessage = 'Please type a valid password.'
+                        return
+                    }
+                }
+                const key = CryptoJS.enc.Utf8.parse(this.inputCode.toString());
+                const iv = CryptoJS.enc.Utf8.parse(getUser.iv.toString());
+                const encryptedMessage = this.encryptMessage(getUser.admin.toString(), key, iv).toString();
+                this.$router.push(`/dashboard/${getUser.id}/${encryptedMessage}`);
             }
-            const key = CryptoJS.enc.Utf8.parse(this.inputCode.toString());
-            const iv = CryptoJS.enc.Utf8.parse(getUser.iv.toString());
-            const encryptedMessage = this.encryptMessage(getUser.admin.toString(), key, iv).toString();
-            this.$router.push(`/dashboard/${getUser.id}/${encryptedMessage}`);
         },
         encryptMessage(status, key, iv) {
             return CryptoJS.AES.encrypt(status, key, { iv: iv });
@@ -64,6 +79,7 @@ export default {
 .container input {
     background-color: #f9f9f9;
 }
+
 .container .code {
     width: auto;
     height: auto;
@@ -114,11 +130,11 @@ export default {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 </style>
