@@ -1,24 +1,19 @@
-# wedding-sharing
+# Wedding Sharing
 
-## Project setup
-```
-npm install
-```
+Projet écrit avec Vue.Js / CSS / VueRouter / Firebase / ApiRestful
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### De quoi ça parle ?
+Un site web permettant de stocker et de télécharger des images. Spécialisé dans le thème du mariage.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Lien en ligne du projet :
+- https://wedding-sharing.netlify.app/
 
-### Lints and fixes files
-```
-npm run lint
-```
+## English version
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This project is working with Vue.Js / CSS / VueRouter / Firebase / ApiRestful
+
+### What is it about ?
+A website for storing and downloading images. Specialized in wedding theme.
+
+### Project's link :
+- https://wedding-sharing.netlify.app/
