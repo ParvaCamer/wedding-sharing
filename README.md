@@ -1,6 +1,6 @@
 # Wedding Sharing
 
-Projet écrit avec Vue.Js / CSS / VueRouter / Firebase / ApiRestful / Vite
+Projet écrit avec Vue.Js / Encryptage de données / CSS / VueRouter / Firebase / ApiRestful / Vite
 
 ### De quoi ça parle ?
 Un site web permettant de stocker et de télécharger des images. Spécialisé dans le thème du mariage.
@@ -10,7 +10,7 @@ Un site web permettant de stocker et de télécharger des images. Spécialisé d
 
 ## English version
 
-This project is working with Vue.Js / CSS / VueRouter / Firebase / ApiRestful
+This project is working with Vue.Js / Encrypted data / CSS / VueRouter / Firebase / ApiRestful
 
 ### What is it about ?
 A website for storing and downloading images. Specialized in wedding theme.
