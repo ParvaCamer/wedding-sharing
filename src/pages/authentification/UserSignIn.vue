@@ -54,8 +54,7 @@ export default {
                 }
                 const key = CryptoJS.enc.Utf8.parse(this.inputCode.toString());
                 const iv = CryptoJS.enc.Utf8.parse(getUser.iv.toString());
-                const encryptedMessage = this.encryptMessage(getUser.admin.toString(), key, iv).toString();
-                console.log(encryptedMessage)
+                const encryptedMessage = (this.encryptMessage(getUser.admin.toString(), key, iv).toString()).replace(/\//g, "-");;
                 this.$router.push(`/dashboard/${getUser.id}/${encryptedMessage}`);
             }
         },
